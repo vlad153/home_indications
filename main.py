@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from home_indication.router.route import image_router
 
-api = FastAPI()
+app = FastAPI()
 
 
-api.include_router(image_router, tags=['recognition'])
+app.include_router(image_router, tags=['recognition'])

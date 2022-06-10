@@ -8,6 +8,7 @@ image_router = APIRouter()
 
 @image_router.post('/image')
 async def recognize_image(file: bytes = File()):
-    nparr = np.fromfile(file, np.uint8)
-    img_np = cv.imdecode(nparr, cv.IMREAD_COLOR)
-    return img_np
+    image_array = np.asarray(bytearray(file), dtype="uint8")
+    image = cv.imdecode(image_array, cv.IMREAD_COLOR)
+    data_image = pytesseract.image_to_data(image)
+    return data_image
